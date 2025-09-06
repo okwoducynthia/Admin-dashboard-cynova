@@ -1,14 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const AddProducts = ({token}:any) => {
-  const [image1, setImage1] = useState<File | null>(null);
-  const [image2, setImage2] = useState<File | null>(null);
-  const [image3, setImage3] = useState<File | null>(null);
-  const [image4, setImage4] = useState<File | null>(null);
+  const [image1, setImage1] = useState<any>(false);
+  const [image2, setImage2] = useState<any>(false);
+  const [image3, setImage3] = useState<any>(false);
+  const [image4, setImage4] = useState<any>(false);
 
-  const [name, setName] = useState("");
+  const [productName, setproductName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState<string>("Men");
   const [price, setPrice] = useState<string>("");
@@ -21,7 +22,7 @@ const AddProducts = ({token}:any) => {
 
     try {
       const formData = new FormData();
-      formData.append("name", name);
+      formData.append("productName", productName);
       formData.append("description", description);
       formData.append("category", category);
       formData.append("price", price);
@@ -29,12 +30,12 @@ const AddProducts = ({token}:any) => {
       formData.append("popular", popular);
       formData.append("discount", discount);
 
-       image1 && formData.append("image1", image1);
+      image1 && formData.append("image1", image1);
       image2 && formData.append("image2", image2);
       image3 && formData.append("image3", image3);
       image4 && formData.append("image4", image4);
 
-      const response = await axios.post("http://localhost:7000/api/admin",
+      const response = await axios.post("http://localhost:7000/api/products/add",
         formData,
         {
           headers: {
@@ -42,10 +43,27 @@ const AddProducts = ({token}:any) => {
           }
         }
       )
-      console.log(response.data);
-      
-
+      if(response.data.success){
+        toast.success(response.data.message)
+        setproductName("");
+        setDescription("");
+        setCategory("Men");
+        setPrice("");
+        setSizes([]);
+        setPopular(false);
+        setDiscount(false);
+        setImage1(false);
+        setImage2(false);
+        setImage3(false);
+        setImage4(false);
+      }
+      else{
+        toast.error(response.data.message)
+      }
+  
     } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
       
     }
   }
@@ -68,9 +86,7 @@ const AddProducts = ({token}:any) => {
                 alt=""
               />
               <input
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setImage1(e.target.files ? e.target.files[0] : null)
-                }
+                onChange={(e: any) => setImage1(e.target.files[0])}
                 type="file"
                 id="image1"
                 hidden
@@ -136,8 +152,8 @@ const AddProducts = ({token}:any) => {
         <div className="w-full">
           <p className="mb-2">Product Name</p>
           <input
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={(e) => setproductName(e.target.value)}
+            value={productName}
             className="w-full max-w-[500px] px-3 py-2"
             type="text"
             placeholder="Type product name here"

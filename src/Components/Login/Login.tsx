@@ -13,7 +13,7 @@ const Login = ({setToken}:any) => {
   const onSubmitHandler = async (e:any) => {
     try {
       e.preventDefault();
-      const response = await axios.post("http://localhost:7000/api/user/admin", {email, password})
+      const response = await axios.post("http://localhost:7000/api/user/adminlogin", {email, password})
       console.log(response);
       
       if(response.data.success){
