@@ -35,7 +35,7 @@ const AddProducts = ({token}:any) => {
       image3 && formData.append("image3", image3);
       image4 && formData.append("image4", image4);
 
-      const response = await axios.post("http://localhost:7000/api/products/add",
+      const response = await axios.post("https://backend-clothing-store-q0jh.onrender.com/api/products/add",
         formData,
         {
           headers: {

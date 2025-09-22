@@ -17,7 +17,7 @@ const Orders = () => {
   const removeProduct = async (id: any) => {
     try {
       await axios.delete(
-        `http://localhost:7000/api/delivery/${id}`
+        `https://backend-clothing-store-q0jh.onrender.com/api/delivery/${id}`
       );
       window.location.reload();
     } catch (error: any) {
@@ -29,7 +29,7 @@ const Orders = () => {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:7000/api/delivery"
+          "https://backend-clothing-store-q0jh.onrender.com/api/delivery"
         );
         console.log(data);
 

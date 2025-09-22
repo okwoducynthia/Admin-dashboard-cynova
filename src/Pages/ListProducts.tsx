@@ -10,7 +10,7 @@ const ListProducts = ({token}:any) => {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get("http://localhost:7000/api/products/list")
+      const response = await axios.get("https://backend-clothing-store-q0jh.onrender.com/api/products/list")
       if(response.data.success){
         setList(response.data.products);
       }
