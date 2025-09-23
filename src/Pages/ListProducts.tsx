@@ -25,7 +25,7 @@ const ListProducts = ({token}:any) => {
 
   const removeProduct = async (id:any) => {
     try {
-      const response = await axios.post(`http://localhost:7000/api/products/remove`,{id}, 
+      const response = await axios.post(`https://backend-cynova-store.onrender.com/api/products/remove`,{id}, 
         {
           headers:{
             token
