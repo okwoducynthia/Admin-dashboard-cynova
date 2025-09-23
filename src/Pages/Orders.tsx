@@ -29,7 +29,7 @@ const Orders = () => {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(
-          "https://backend-clothing-store-q0jh.onrender.com/api/delivery"
+          "https://backend-cynova-store.onrender.com/api/delivery"
         );
         console.log(data);
 
