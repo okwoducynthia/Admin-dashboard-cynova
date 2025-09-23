@@ -13,7 +13,7 @@ const Login = ({setToken}:any) => {
   const onSubmitHandler = async (e:any) => {
     try {
       e.preventDefault();
-      const response = await axios.post("https://backend-clothing-store-q0jh.onrender.com/api/user/adminlogin", {email, password})
+      const response = await axios.post("https://backend-cynova-store.onrender.com/api/user/adminlogin", {email, password})
       console.log(response);
       
       if(response.data.success){

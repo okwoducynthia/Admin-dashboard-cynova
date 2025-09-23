@@ -17,7 +17,7 @@ const Orders = () => {
   const removeProduct = async (id: any) => {
     try {
       await axios.delete(
-        `https://backend-clothing-store-q0jh.onrender.com/api/delivery/${id}`
+        `https://backend-cynova-store.onrender.com/api/delivery/${id}`
       );
       window.location.reload();
     } catch (error: any) {
